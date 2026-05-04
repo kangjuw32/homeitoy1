@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 AI-Native Career Roadmap</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a; /* 네이비 블랙 */
+            --bg-card: #1e293b;
+            --accent-green: #4ade80; /* 형광 그린 */
+            --accent-blue: #3b82f6;  /* 포인트 블루 */
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--accent-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Hero Section */
+        header {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--accent-green), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-blue);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Card Layout for Jobs & Skills */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-green);
+        }
+
+        .card h3 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+
+        .card ul {
+            list-style: none;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .card li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .card li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+        }
+
+        /* Timeline Design */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--accent-blue);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+            width: 50%;
+            padding: 0 2rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            top: 10px;
+            z-index: 10;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot { right: -8px; }
+        .timeline-item:nth-child(even) .timeline-dot { left: -8px; }
+
+        .timeline-content {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 1rem;
+        }
+
+        .timeline-year {
+            color: var(--accent-green);
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .timeline::before { left: 20px; }
+            .timeline-item { width: 100%; left: 0 !important; text-align: left !important; padding-left: 45px; }
+            .timeline-dot { left: 12px !important; }
+            header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">AI-NATIVE 2026</div>
+            <div class="nav-links">
+                <a href="#jobs">미래 유망 직무</a>
+                <a href="#skills">핵심 필수 역량</a>
+                <a href="#roadmap">나의 4년 로드맵</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Next-Gen AI Engineer Portfolio</h1>
+        <p style="color: var(--text-dim)">AI를 동료로 삼아 미래를 설계하는 2026년형 인재 로드맵</p>
+    </header>
+
+    <!-- 섹션 1: 미래 유망 직무 -->
+    <section id="jobs">
+        <div class="section-header">
+            <h2>🚀 미래 유망 직무</h2>
+            <p style="color: var(--text-dim); margin-top: 10px;">2026년 IT 시장이 주목하는 블루오션 직무 [1, 2]</p>
+        </div>
+        <div class="grid-container">
+            <div class="card">
+                <h3>1. 프롬프트 엔지니어</h3>
+                <p>AI에게 최적화된 명령어를 설계하여 80점의 대답을 100점의 정답으로 만드는 전문가입니다 [1].</p>
+            </div>
+            <div class="card">
+                <h3>2. MLOps 엔지니어</h3>
+                <p>AI 모델의 개발부터 배포, 모니터링까지 전 생애주기를 자동화하는 파이프라인을 구축합니다 [2].</p>
+            </div>
+            <div class="card">
+                <h3>3. AI 윤리 및 책임 담당자</h3>
+                <p>AI 도입 시 발생할 수 있는 편향성, 보안 리스크를 관리하고 신뢰할 수 있는 정책을 수립합니다 [2].</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 섹션 2: 핵심 필수 역량 -->
+    <section id="skills">
+        <div class="section-header">
+            <h2>💡 핵심 필수 역량</h2>
+            <p style="color: var(--text-dim); margin-top: 10px;">코딩 기술을 넘어선 2026년형 인재의 3대 무기 [3-5]</p>
+        </div>
+        <div class="grid-container">
+            <div class="card">
+                <h3>비판적 사고 (Critical Thinking)</h3>
+                <ul>
+                    <li>문제 본질 분석 및 AI 결과 검증</li>
+                    <li>논리적 사고 기반의 문제 해결 능력</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>AI 리터러시 (AI Collaboration)</h3>
+                <ul>
+                    <li>AI 도구를 '디지털 동료'로 활용</li>
+                    <li>워크플로우 자동화 및 생산성 혁신</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>인간 중심 소통 (Soft Skills)</h3>
+                <ul>
+                    <li>경험의 창의적 연결 및 협업</li>
+                    <li>공감 기반의 커뮤니케이션 역량</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 섹션 3: 나의 4년 로드맵 -->
+    <section id="roadmap">
+        <div class="section-header">
+            <h2>📅 나의 4년 로드맵</h2>
+            <p style="color: var(--text-dim); margin-top: 10px;">'대체 불가능한 인재'로 성장하기 위한 타임라인 [6-9]</p>
+        </div>
+        <div class="timeline">
+            <!-- 1학년 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">1학년: Foundation</div>
+                    <p>AI 리터러시 구축 및 파이썬 기초 마스터. AI를 검색 엔진이 아닌 '대답 자판기'로 활용하는 습관 형성 [6].</p>
+                </div>
+            </div>
+            <!-- 2학년 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2학년: Skill-Up</div>
+                    <p>CS 핵심(자료구조, OS) 및 SQL 역량 확보. GitHub 기록 및 디지털 배지를 통한 역량 증명 시작 [7].</p>
+                </div>
+            </div>
+            <!-- 3학년 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">3학년: Professionalism</div>
+                    <p>인턴십 도전 및 MLOps 인프라 학습. 타 직군과의 협업을 통해 '인간 중심 소통 역량' 실전 배양 [8].</p>
+                </div>
+            </div>
+            <!-- 4학년 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">4학년: Irreplaceable</div>
+                    <p>AI 답변의 오류를 검증하는 비판적 판단력 완성. 여러 AI를 부리는 '에이전트 보스'로서의 잠재력 증명 [9].</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 4rem; color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05);">
+        &copy; 2026 AI-SW Career Roadmap. Created for the Future.
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
